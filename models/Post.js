@@ -19,8 +19,8 @@ class Post {
 
     //         return db.execute(sql);
     // }
-    static register(name , number, email, password ){
-        let sql = `SELECT COUNT(email) as count FROM UserProfile WHERE email = '${email}';`;
+    static register(age , gender, name, username , password){
+        let sql = `SELECT COUNT(username) as count FROM UserProfile WHERE username = '${username}';`;
         return db.query(sql).then(async ([row])=>{
             console.log(row[0].count)
             if(row[0].count != 0){
@@ -31,7 +31,7 @@ class Post {
                 // INSERT into TABLE
                 const hashedPassword = await bcrypt.hash(password,10)
                 console.log(hashedPassword)
-                let ins = `INSERT INTO UserProfile(name,number,email,password) values('${name}','${number}','${email}','${hashedPassword}');`;
+                let ins = `INSERT INTO UserProfile values(${age},'${gender}','${name}','${username}','${hashedPassword}');`;
                 return db.query(ins).then(([row])=>{
                     return 1
                 }).catch(error =>{

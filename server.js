@@ -7,12 +7,12 @@ app.use(express.json()); // parse json bodies in the request object
 app.use(cors())
 // Redirect requests to endpoint starting with /posts to postRoutes.js
 
-app.use("/", require("./routes/postRoutes"));
-// app.get("/posts", (req, res) => {
-//    res.sendFile('/Users/sanketkar/Desktop/DBSProj/MOVIEREVIEW/public/login.html')
-//   console.log("hiii")
+app.use("/posts", require("./routes/postRoutes"));
+app.get("/posts", (req, res) => {
+   res.sendFile('/Users/sanketkar/Desktop/DBSProj/MOVIEREVIEW/public/login.html')
+  console.log("hiii")
 
-// })
+})
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, next) => {
   console.log(err.stack);

@@ -32,10 +32,11 @@ const Post = require('../models/Post');
 //         next(error);
 //     }
 // }
-exports.regUser = async (req, res, next) => {
+exports.registerUser = async (req, res, next) => {
     try {
         let obj = req.body;
-        let val = await Post.register(obj.age, obj.gender, obj.name, obj.username, obj.password);
+        console.log(req.body)
+        let val = await Post.register(obj.name, obj.number, obj.email, obj.password);
         if (val != 1) val = 0;
         return res.json({
             success: val
